@@ -167,7 +167,7 @@ std::wstring OmnisTools::getWStringFromEXTFldVal(EXTfldval& fVal) {
 	fVal.getChar(maxLength, omnisString, length);
 	
 	wchar_t* cString;
-#if MARKUP_SIZEOFWCHAR == 2
+#if MARKUP_SIZEOFWCHAR == 2 && defined(UNICODE)
 	// For 2-Byte UTF16 wchar_t* (Typically Windows)
 	// Convert from UTF8 to UTF16 and set new stringLength
 	
@@ -235,7 +235,7 @@ qchar* OmnisTools::getQCharFromWString(const std::wstring readString, qlong &ret
     // Declare pointer to new data
     qchar* omnisString;
     
-#if MARKUP_SIZEOFWCHAR == 2
+#if MARKUP_SIZEOFWCHAR == 2 && defined(UNICODE)
 	// For 2-Byte UTF16 wchar_t* (Typically Windows)
 	// Feed into raw byte data
 	UChar* utf16data = reinterpret_cast<UChar*> (cString);
@@ -275,6 +275,7 @@ std::string OmnisTools::getStringFromEXTFldVal(EXTfldval& fVal) {
 	qchar* omnisString = new qchar[maxLength];
 	fVal.getChar(maxLength, omnisString, length);
 	
+#ifdef UNICODE
 	// Translate qchar* string into UTF8 binary
 	qbyte* utf8data = reinterpret_cast<qbyte*>(omnisString);
 	stringLength = CHRunicode::charToUtf8(omnisString, length, utf8data);
@@ -285,8 +286,38 @@ std::string OmnisTools::getStringFromEXTFldVal(EXTfldval& fVal) {
 	// Create standard string
 	retString = std::string(cString,stringLength);
 	
+#else
+	// Translate qchar* string into UTF8 binary
+	// qbyte* utf8data = (qbyte*) malloc( UTF8_MAX_BYTES_PER_CHAR * maxLength );
+
+    CHRconvToEncodedCharacters convToUTF( qtrue, omnisString, length );
+    // strcpy( (char *) utf8data, (const char*) convToUTF.dataPtr());
+
+    //char* cString = reinterpret_cast<char*> (utf8data);
+    retString = std::string((const char*) convToUTF.dataPtr(),convToUTF.len());
+    
+#if 0
+    char fname[256];
+    static int n = 0;
+    n++;
+    
+    sprintf(fname, "/Users/cs/utf8_%d", n);
+    FILE * f = fopen(fname,"wb");
+    fwrite(cString, strlen(cString),1,f );
+    fclose(f);
+    
+    sprintf(fname, "/Users/cs/omnis_%d", n);
+    f = fopen(fname,"wb");
+    fwrite(omnisString, OMstrlen(omnisString),1,f);
+    fclose(f);
+#endif
+    
+#endif	
+    
 	// Clean-up
-	delete [] omnisString;
+	if (omnisString != NULL){
+	    delete [] omnisString;
+	}
 	
 	return retString;
 }
@@ -299,7 +330,9 @@ void OmnisTools::getEXTFldValFromString(EXTfldval& fVal, const std::string readS
 	fVal.setChar(omnisString, length); // Set value of character field, but exclude the last character since it will be the null terminator from the C String
 	
 	// Clean-up
-	delete [] omnisString;
+	if (omnisString != NULL) {
+	    delete [] omnisString;
+	}
 }
 
 // Set an existing EXTfldval object from a std::wstring
@@ -314,7 +347,7 @@ void OmnisTools::getEXTFldValFromChar(EXTfldval& fVal, const char* readChar) {
 }
 
 // Get a dynamically allocated qchar* array from a std::string
-qchar* OmnisTools::getQCharFromString(const std::string readString, qlong &retLength) {
+qchar* OmnisTools::getQCharFromString(const std::string readString, qlong &retLength) {	
 	qlong length = readString.size();
 	
 	// Cast-away constness of c_str() pointer 
@@ -323,12 +356,19 @@ qchar* OmnisTools::getQCharFromString(const std::string readString, qlong &retLe
 	// Feed into raw byte data
 	qbyte* utf8data = reinterpret_cast<qbyte*> (cString);
 	
-	// Allocate new qchar* string
-	qchar* omnisString = new qchar[length];
-	
+    qchar* omnisString = NULL;
+
+#ifdef UNICODE
+	omnisString = new qchar[length];
 	// Convert to Omnis Character field
-	retLength = CHRunicode::utf8ToChar(utf8data, length, omnisString);  // Convert characters into Omnis Char Field
-	
+	retLength = CHRunicode::utf8ToChar(utf8data, length, omnisString);
+#else
+    CHRconvFromEncodedCharacters cFromUtf8(qtrue,utf8data,length);
+    omnisString = new qchar[cFromUtf8.len()];
+    retLength = cFromUtf8.len();
+    OMstrncpy( omnisString, cFromUtf8.dataPtr(),retLength);
+#endif
+
 	return omnisString;
 }
 
@@ -337,7 +377,11 @@ str15 OmnisTools::initStr15(const char* in){
     str15 theString;
     qshort length = strlen(in);
     if (length > 0 && length <= 15) {
+#ifdef UNICODE
         theString.setUtf8((qbyte*) in, strlen(in));
+#else
+		theString = in;
+#endif
     }
     
     return theString;
@@ -348,7 +392,11 @@ str31 OmnisTools::initStr31(const char* in){
     str31 theString;
     qshort length = strlen(in);
     if (length > 0 && length <= 31) {
+#ifdef UNICODE
         theString.setUtf8((qbyte*) in, strlen(in));
+#else
+		theString = in;
+#endif    
     }
     
     return theString;
@@ -359,7 +407,11 @@ str80 OmnisTools::initStr80(const char* in){
     str80 theString;
     qshort length = strlen(in);
     if (length > 0 && length <= 80) {
+#ifdef UNICODE
         theString.setUtf8((qbyte*) in, strlen(in));
+#else
+		theString = in;
+#endif    
     }
     
     return theString;
@@ -370,7 +422,11 @@ str255 OmnisTools::initStr255(const char* in) {
     str255 theString;
     qshort length = strlen(in);
     if (length > 0 && length <= 255) {
+#ifdef UNICODE
         theString.setUtf8((qbyte*) in, strlen(in));
+#else
+		theString = in;
+#endif    
     }
     
     return theString;

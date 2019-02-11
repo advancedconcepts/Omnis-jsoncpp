@@ -6,6 +6,7 @@ BEGIN
     1002                    "Value:Representation of a JSON value.  This is the primary container for jsoncpp."
     1003                    "Reader:Interprets character JSON document into a a Value object."
     1004                    "StyledWriter:Writes JsonValue object to character data."
+    1005                    "FastWriter:Writes JsonValue object in single ling."
 
     2100                    "$construct:$construct(Element) initializes the object with a specified value"
     2101                    "$initialize:$initialize(Element) initializes the object with a specified value"
@@ -37,6 +38,7 @@ BEGIN
 
     2300                    "$write:$write(Json::Value) returns a JSON formatted document for the Value object"
 
+    2400                    "$write:$write(Json::Value) returns a JSON formatted document for the Value object"
     3100                    "$type:(read only) $type returns the JSON value type constant integer for the current type."
     3101                    "$typeDesc:(read only) $typeDesc returns the JSON value type constant name for the current type."
     3102                    "$contents:$contents returns the data being held by the JSON value object"
@@ -52,7 +54,8 @@ BEGIN
     4004                    "Index:index in array"
     4005                    "Key:key in object"
     4006                    "List:list to convert to value"
-    4007                    "Key:key in object"
+    4007                    "ConvertToObject:(Optional) if kTrue no wrapping array is created for a single line list"
+    4008                    "Key:key in object"
 
     4100                    "Document:Character string with JSON document"
     4101                    "Root:Value object to store the root element in"

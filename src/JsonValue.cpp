@@ -54,8 +54,10 @@ void JsonValue::copy( NVObjBase* pObj ) {
 	NVObjBase::copy(pObj);
 	
 	// Copy the Json::Value and top pointer into the new object
-	jsonValue = dynamic_cast<JsonValue*>(pObj)->jsonValue;
-	document = dynamic_cast<JsonValue*>(pObj)->document;
+        JsonValue* other = dynamic_cast<JsonValue*>(pObj);
+    
+	jsonValue = other->jsonValue;
+	document = other->document;
 }
 
 // Get the internal Json::Value
@@ -258,16 +260,22 @@ qlong JsonValue::methodCall( tThreadData* pThreadData )
 // NOTE: Json::Value has the 4000-4099 parameter stripe
 ECOparam cJsonValueMethodsParamsTable[] = 
 {
+    // $construct
 	4000, fftCharacter, 0, 0,
+    // $initialize
 	4001, fftCharacter, 0, 0,
+    // $get
 	4002, fftCharacter, 0, 0,
 	4003, fftObject, EXTD_FLAG_PARAMOPT, 0,
+    // $isvalidindex
 	4004, fftInteger,   0, 0,
+    // $ismember
 	4005, fftCharacter, 0, 0,
     // $listToValue
     4006, fftList,      0, 0,
+    4007, fftBoolean,      EXTD_FLAG_PARAMOPT, 0,
     // $delete
-    4007, fftCharacter, 0, 0
+    4008, fftCharacter, 0, 0
 };
 
 // Table of Methods available for Simple
@@ -305,7 +313,7 @@ ECOmethodEvent cJsonValueMethodsTable[] =
 	cMethodSet,            cMethodSet,            fftNone,      0, 0, 0, 0,
     cMethodValueToList,    cMethodValueToList,    fftList,      0, 0, 0, 0,
     cMethodListToValue,    cMethodListToValue,    fftNone,      1, &cJsonValueMethodsParamsTable[6], 0, 0,
-    cMethodDelete,         cMethodDelete,         fftObject,    1, &cJsonValueMethodsParamsTable[7], 0, 0
+    cMethodDelete,         cMethodDelete,         fftObject,    1, &cJsonValueMethodsParamsTable[8], 0, 0
 };
 
 // List of methods in Simple
@@ -850,7 +858,11 @@ void JsonValue::methodGetMemberNames( tThreadData* pThreadData, qshort pParamCou
 	
 	// Ensure that the Json::Value is an Object (since those are the only one's with member names)
 	if ( !(jsonValue->isObject()) ) {
-		fValReturn.setList(retList, qtrue, qfalse); 
+#ifdef UNICODE
+                fValReturn.setList(retList, qtrue, qfalse);
+#else
+                fValReturn.setList(retList, qtrue);
+#endif
 		ECOaddParam(pThreadData->mEci, &fValReturn);
 		return;
 	}
@@ -870,7 +882,11 @@ void JsonValue::methodGetMemberNames( tThreadData* pThreadData, qshort pParamCou
 		getEXTFldValFromString(fValMember, rowMember);
 	}
 	
-	fValReturn.setList(retList, qtrue, qfalse); 
+#ifdef UNICODE
+	fValReturn.setList(retList, qtrue, qfalse);
+#else
+        fValReturn.setList(retList, qtrue);
+#endif
 	ECOaddParam(pThreadData->mEci, &fValReturn);
 	return;
 }
@@ -937,12 +953,25 @@ void JsonValue::methodListToValue( tThreadData* pThreadData, qshort pParamCount 
         return;
     }
     
+    bool singleLineToObject = false;
+    if ( pParamCount > 1 && inList.rowCnt() == 1 )
+    {
+        qbool toObject = qfalse;
+        
+        if ( getParamBool( pThreadData, 2, toObject ) )
+        {
+            singleLineToObject = (toObject == qtrue);
+        }
+    }
+    
     EXTfldval colVal, colValName;
     str255 colName;
     Json::Value obj;
     
     // Resize array to correct number of elements (since we know what it is)
-    jsonValue->resize(Json::UInt(inList.rowCnt()));
+    
+    if ( !singleLineToObject )
+        jsonValue->resize(Json::UInt(inList.rowCnt()));
     
     // Loop all rows and all columns and create a Json::Value.  Each row is 1 line in an array and each column is part of an object.
     for (qshort row = 1; row <= inList.rowCnt(); ++row) {
@@ -965,7 +994,12 @@ void JsonValue::methodListToValue( tThreadData* pThreadData, qshort pParamCount 
             }
         }
         
-        (*jsonValue)[Json::UInt(row-1)] = obj;
+        if ( singleLineToObject )
+        {
+            (*jsonValue) = obj;
+        }
+        else
+            (*jsonValue)[Json::UInt(row-1)] = obj;
     }
 }
 
@@ -980,11 +1014,10 @@ qshort JsonValue::addColForValue(EXTqlist* list, Json::Value* val, str255& colNa
             colNum = list->addCol(fftCharacter, dpFcharacter, 10000000, &colName);
             break;
         case Json::intValue:
-            colNum = list->addCol(fftInteger, 0, 10000000, &colName);
-            
+            colNum = list->addCol(fftInteger, 0, 0, &colName);
             break;
         case Json::uintValue:
-            colNum = list->addCol(fftInteger, 0, 10000000, &colName);
+            colNum = list->addCol(fftInteger, 0, 0, &colName);
             break;
         case Json::realValue:
             colNum = list->addCol(fftNumber, dpFloat, 0, &colName);
@@ -1209,6 +1242,8 @@ bool JsonValue::writeValueToList( tThreadData* pThreadData, EXTqlist* list, Json
         // Regular value
         if (row > 0 && col > 0) {
             // Can only write regular value if column has already been created
+            // list->getColValRef(row, col, colVal, qtrue);
+            // getEXTFldValFromValue(pThreadData, colVal, val);
             EXTfldval tempVal;
             getEXTFldValFromValue(pThreadData, tempVal, val);
             list->putColVal(row, col, tempVal);

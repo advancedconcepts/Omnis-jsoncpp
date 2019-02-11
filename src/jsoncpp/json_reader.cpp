@@ -131,7 +131,8 @@ Reader::parse( const std::string &document,
    return parse( begin, end, root, collectComments );
 }
 
-
+#include <Security/SecureTransport.h>
+    
 bool
 Reader::parse( std::istream& sin,
                Value &root,
