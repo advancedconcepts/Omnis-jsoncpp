@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>jsoncpp</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.artsman.jsoncpp</string>
+	<string>ch.advanced.jsoncpp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.3</string>
 	<key>CFBundleSignature</key>
-	<string>OO$$</string>
+	<string>OO$$$$</string>
 	<key>CFBundleVersion</key>
 	<string>1.3</string>
 	<key>CSResourcesFileMapped</key>
