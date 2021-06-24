@@ -22,6 +22,21 @@
 
 /* Begin PBXBuildFile section */
 		4017D617206FE7BC007085B6 /* JsonFastWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404631B6205653FD002F124A /* JsonFastWriter.cpp */; };
+		4024DD0A2456B661005725DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		4024DD0B2456B661005725DD /* jsoncpp.rc in Resources */ = {isa = PBXBuildFile; fileRef = B086C3EA13818525005B7A43 /* jsoncpp.rc */; };
+		4024DD0D2456B661005725DD /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3D8138184EB005B7A43 /* jsoncpp.cpp */; };
+		4024DD0E2456B661005725DD /* JsonReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3D9138184EB005B7A43 /* JsonReader.cpp */; };
+		4024DD0F2456B661005725DD /* JsonValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3DA138184EB005B7A43 /* JsonValue.cpp */; };
+		4024DD102456B661005725DD /* JsonWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3DB138184EB005B7A43 /* JsonWriter.cpp */; };
+		4024DD112456B661005725DD /* NVObjBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3DC138184EB005B7A43 /* NVObjBase.cpp */; };
+		4024DD122456B661005725DD /* OmnisTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3DD138184EB005B7A43 /* OmnisTools.cpp */; };
+		4024DD132456B661005725DD /* json_reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3E4138184F4005B7A43 /* json_reader.cpp */; };
+		4024DD142456B661005725DD /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3E5138184F4005B7A43 /* json_value.cpp */; };
+		4024DD152456B661005725DD /* json_writer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C3E6138184F4005B7A43 /* json_writer.cpp */; };
+		4024DD162456B661005725DD /* Static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B086C40313827C36005B7A43 /* Static.cpp */; };
+		4024DD172456B661005725DD /* JsonFastWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404631B6205653FD002F124A /* JsonFastWriter.cpp */; };
+		4024DD192456B661005725DD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40C54E2820485681009529A4 /* Cocoa.framework */; };
+		4024DD1A2456B661005725DD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */; };
 		404631B7205653FE002F124A /* JsonFastWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 404631B6205653FD002F124A /* JsonFastWriter.cpp */; };
 		404631BB20565451002F124A /* JsonFastWriter.he in Resources */ = {isa = PBXBuildFile; fileRef = 404631BA20565451002F124A /* JsonFastWriter.he */; };
 		4078213A20AF1BF8008756B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
@@ -69,6 +84,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
+		4024DD1C2456B661005725DD /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.rc";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
+			);
+			script = "/Developer/Tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\n";
+		};
 		4078214C20AF1BF8008756B5 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
@@ -78,7 +104,7 @@
 			outputFiles = (
 				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
 			);
-			script = "/Developer/Tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi";
+			script = "/Developer/Tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\n";
 		};
 		4089B84F203B079000F64CD5 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
@@ -115,8 +141,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08EA7FFBFE8413EDC02AAC07 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		4024DD202456B661005725DD /* jsoncpp.u_xcomp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsoncpp.u_xcomp; sourceTree = BUILT_PRODUCTS_DIR; };
 		404631B6205653FD002F124A /* JsonFastWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = JsonFastWriter.cpp; path = ../../src/JsonFastWriter.cpp; sourceTree = "<group>"; };
 		404631BA20565451002F124A /* JsonFastWriter.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = JsonFastWriter.he; path = ../../include/JsonFastWriter.he; sourceTree = "<group>"; };
 		4078215020AF1BF8008756B5 /* jsoncpp.u_xcomp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsoncpp.u_xcomp; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +181,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4024DD182456B661005725DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4024DD192456B661005725DD /* Cocoa.framework in Frameworks */,
+				4024DD1A2456B661005725DD /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4078214820AF1BF8008756B5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +272,7 @@
 				96CA4E610907E8CC00C234AA /* jsoncpp.u_xcomp */,
 				4089B853203B079000F64CD5 /* jsoncpp.n_xcomp */,
 				4078215020AF1BF8008756B5 /* jsoncpp.u_xcomp */,
+				4024DD202456B661005725DD /* jsoncpp.u_xcomp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -293,9 +330,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4078213820AF1BF8008756B5 /* UnicodeCore9 */ = {
+		4024DD082456B661005725DD /* UnicodeCore102 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4078214D20AF1BF8008756B5 /* Build configuration list for PBXNativeTarget "UnicodeCore9" */;
+			buildConfigurationList = 4024DD1D2456B661005725DD /* Build configuration list for PBXNativeTarget "UnicodeCore102" */;
+			buildPhases = (
+				4024DD092456B661005725DD /* Resources */,
+				4024DD0C2456B661005725DD /* Sources */,
+				4024DD182456B661005725DD /* Frameworks */,
+				4024DD1B2456B661005725DD /* ShellScript */,
+			);
+			buildRules = (
+				4024DD1C2456B661005725DD /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = UnicodeCore102;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = xrandom;
+			productReference = 4024DD202456B661005725DD /* jsoncpp.u_xcomp */;
+			productType = "com.apple.product-type.bundle";
+		};
+		4078213820AF1BF8008756B5 /* UnicodeCore101 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4078214D20AF1BF8008756B5 /* Build configuration list for PBXNativeTarget "UnicodeCore101" */;
 			buildPhases = (
 				4078213920AF1BF8008756B5 /* Resources */,
 				4078213C20AF1BF8008756B5 /* Sources */,
@@ -307,7 +364,7 @@
 			);
 			dependencies = (
 			);
-			name = UnicodeCore9;
+			name = UnicodeCore101;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = xrandom;
 			productReference = 4078215020AF1BF8008756B5 /* jsoncpp.u_xcomp */;
@@ -378,12 +435,22 @@
 				4089B83D203B079000F64CD5 /* core */,
 				96CA4E530907E8CC00C234AA /* UnicodeCore */,
 				96D355F20908DD62006B6436 /* ReleaseBuild */,
-				4078213820AF1BF8008756B5 /* UnicodeCore9 */,
+				4078213820AF1BF8008756B5 /* UnicodeCore101 */,
+				4024DD082456B661005725DD /* UnicodeCore102 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4024DD092456B661005725DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4024DD0A2456B661005725DD /* InfoPlist.strings in Resources */,
+				4024DD0B2456B661005725DD /* jsoncpp.rc in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4078213920AF1BF8008756B5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -428,6 +495,19 @@
 			shellPath = /bin/sh;
 			shellScript = "rm -r \"$OMNIS_EXE/Contents/MacOS/xcomp/$WRAPPER_NAME/\"\ncp -r \"$INSTALL_PATH/$WRAPPER_NAME\" \"$OMNIS_EXE/Contents/MacOS/xcomp\"";
 		};
+		4024DD1B2456B661005725DD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -r \"$OMNIS_EXE/Contents/MacOS/xcomp/$WRAPPER_NAME/\"\ncp -r \"$INSTALL_PATH/$WRAPPER_NAME\" \"$OMNIS_EXE/Contents/MacOS/xcomp\"\n";
+		};
 		4078214B20AF1BF8008756B5 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -439,7 +519,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -r \"$OMNIS_EXE/Contents/MacOS/xcomp/$WRAPPER_NAME/\"\ncp -r \"$INSTALL_PATH/$WRAPPER_NAME\" \"$OMNIS_EXE/Contents/MacOS/xcomp\"";
+			shellScript = "rm -r \"$OMNIS_EXE/Contents/MacOS/xcomp/$WRAPPER_NAME/\"\ncp -r \"$INSTALL_PATH/$WRAPPER_NAME\" \"$OMNIS_EXE/Contents/MacOS/xcomp\"\n";
 		};
 		40C54E2A20486074009529A4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -457,6 +537,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4024DD0C2456B661005725DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4024DD0D2456B661005725DD /* jsoncpp.cpp in Sources */,
+				4024DD0E2456B661005725DD /* JsonReader.cpp in Sources */,
+				4024DD0F2456B661005725DD /* JsonValue.cpp in Sources */,
+				4024DD102456B661005725DD /* JsonWriter.cpp in Sources */,
+				4024DD112456B661005725DD /* NVObjBase.cpp in Sources */,
+				4024DD122456B661005725DD /* OmnisTools.cpp in Sources */,
+				4024DD132456B661005725DD /* json_reader.cpp in Sources */,
+				4024DD142456B661005725DD /* json_value.cpp in Sources */,
+				4024DD152456B661005725DD /* json_writer.cpp in Sources */,
+				4024DD162456B661005725DD /* Static.cpp in Sources */,
+				4024DD172456B661005725DD /* JsonFastWriter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4078213C20AF1BF8008756B5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -533,6 +631,84 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4024DD1E2456B661005725DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BOOST_ROOT = ../../../boost_1_59_0/osx/prefix;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				DSTROOT = /;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					$PROJECT_DIR/../../include,
+					/Developer/Headers/FlatCarbon,
+					"$(OMNIS_LIB_PATH)/complib/u_complib.framework/Headers",
+					"$(BOOST_ROOT)/include",
+					$PROJECT_DIR/../../platform/Mac,
+					$PROJECT_DIR/../../include/jsoncpp,
+				);
+				INFOPLIST_FILE = $PROJECT_DIR/Info.plist;
+				INSTALL_PATH = "$(PROJECT_DIR)/../../lib/osx/studio102_debug";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BOOST_ROOT)/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 10.2.app";
+				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.2";
+				OTHER_LDFLAGS = (
+					"-framework",
+					u_complib,
+					"-lboost_regex",
+				);
+				PRODUCT_NAME = jsoncpp;
+				SDKROOT = macosx10.14;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		4024DD1F2456B661005725DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				BOOST_ROOT = ../../../boost_1_59_0/osx/prefix;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				DSTROOT = /;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = (
+					$PROJECT_DIR/../../include,
+					/Developer/Headers/FlatCarbon,
+					"$(OMNIS_LIB_PATH)/complib/u_complib.framework/Headers",
+					"$(BOOST_ROOT)/include",
+					$PROJECT_DIR/../../platform/Mac,
+					$PROJECT_DIR/../../include/jsoncpp,
+				);
+				INFOPLIST_FILE = $PROJECT_DIR/Info.plist;
+				INSTALL_PATH = "$(PROJECT_DIR)/../../lib/osx/studio102";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BOOST_ROOT)/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 10.2.app";
+				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.2";
+				OTHER_LDFLAGS = (
+					"-framework",
+					u_complib,
+					"-lboost_regex",
+				);
+				PRODUCT_NAME = jsoncpp;
+				SDKROOT = macosx10.14;
+				SKIP_INSTALL = NO;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
 		4078214E20AF1BF8008756B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -550,14 +726,14 @@
 					$PROJECT_DIR/../../include/jsoncpp,
 				);
 				INFOPLIST_FILE = $PROJECT_DIR/Info.plist;
-				INSTALL_PATH = "$(PROJECT_DIR)/lib/studio90_debug";
+				INSTALL_PATH = "$(PROJECT_DIR)/../../lib/osx/studio101_debug";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BOOST_ROOT)/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 9.0 x64.app";
-				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-9.0";
+				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 10.1.app";
+				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.1";
 				OTHER_LDFLAGS = (
 					"-framework",
 					u_complib,
@@ -587,14 +763,14 @@
 					$PROJECT_DIR/../../include/jsoncpp,
 				);
 				INFOPLIST_FILE = $PROJECT_DIR/Info.plist;
-				INSTALL_PATH = "$(PROJECT_DIR)/lib/studio90";
+				INSTALL_PATH = "$(PROJECT_DIR)/../../lib/osx/studio101";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(BOOST_ROOT)/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 9.0 x64.app";
-				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-9.0";
+				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 10.1.app";
+				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.1";
 				OTHER_LDFLAGS = (
 					"-framework",
 					u_complib,
@@ -711,7 +887,7 @@
 					u_complib,
 					"-lboost_regex",
 				);
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx10.12;
 				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
@@ -746,7 +922,7 @@
 					u_complib,
 					"-lboost_regex",
 				);
-				SDKROOT = macosx10.10;
+				SDKROOT = macosx10.12;
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "i386 x86_64";
 			};
@@ -856,7 +1032,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4078214D20AF1BF8008756B5 /* Build configuration list for PBXNativeTarget "UnicodeCore9" */ = {
+		4024DD1D2456B661005725DD /* Build configuration list for PBXNativeTarget "UnicodeCore102" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4024DD1E2456B661005725DD /* Debug */,
+				4024DD1F2456B661005725DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4078214D20AF1BF8008756B5 /* Build configuration list for PBXNativeTarget "UnicodeCore101" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4078214E20AF1BF8008756B5 /* Debug */,
