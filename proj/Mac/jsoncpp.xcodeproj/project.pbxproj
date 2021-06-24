@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -89,17 +89,21 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.rc";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
 			);
-			script = "/Developer/Tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\n";
+			script = "$OMNIS_LIB_PATH/tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\n";
 		};
 		4078214C20AF1BF8008756B5 /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.rc";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
@@ -111,6 +115,8 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.rc";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
@@ -122,11 +128,13 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.rc";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$(TEMP_FILE_DIR)/omnisrc/Localizable.strings",
 			);
-			script = "/Developer/Tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi";
+			script = "/Developer/Tools/omnisrc64.app/Contents/MacOS/omnisrc64 INPUT_FILE_PATH TEMP_FILE_DIR REZ_SEARCH_PATHS XCOMP\nif [ -f $TEMP_FILE_DIR/omnisrc/Bitmap.strings ]; then\ncp $TEMP_FILE_DIR/omnisrc/Bitmap.strings $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\nshopt -s nullglob\nif [ ! -z \"`echo $TEMP_FILE_DIR/omnisrc/*.PNG`\" ]; then\ncp $TEMP_FILE_DIR/omnisrc/*.PNG $INSTALL_DIR/$CONTENTS_FOLDER_PATH/Resources\nfi\n";
 		};
 /* End PBXBuildRule section */
 
@@ -148,7 +156,7 @@
 		404631BA20565451002F124A /* JsonFastWriter.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = JsonFastWriter.he; path = ../../include/JsonFastWriter.he; sourceTree = "<group>"; };
 		4078215020AF1BF8008756B5 /* jsoncpp.u_xcomp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsoncpp.u_xcomp; sourceTree = BUILT_PRODUCTS_DIR; };
 		4089B853203B079000F64CD5 /* jsoncpp.n_xcomp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsoncpp.n_xcomp; sourceTree = BUILT_PRODUCTS_DIR; };
-		40C54E2820485681009529A4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		40C54E2820485681009529A4 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		96CA4E610907E8CC00C234AA /* jsoncpp.u_xcomp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jsoncpp.u_xcomp; sourceTree = BUILT_PRODUCTS_DIR; };
 		B086C3C3138184CE005B7A43 /* json_batchallocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = json_batchallocator.h; path = ../../include/json_batchallocator.h; sourceTree = "<group>"; };
 		B086C3C4138184CE005B7A43 /* jsoncpp.he */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = jsoncpp.he; path = ../../include/jsoncpp.he; sourceTree = "<group>"; };
@@ -634,9 +642,11 @@
 		4024DD1E2456B661005725DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BOOST_ROOT = ../../../boost_1_59_0/osx/prefix;
+				BOOST_ROOT = ../../../boost_1_76_0/boost;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = V9L7TJM735;
 				DSTROOT = /;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
@@ -653,19 +663,18 @@
 				INSTALL_PATH = "$(PROJECT_DIR)/../../lib/osx/studio102_debug";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(BOOST_ROOT)/lib",
+					"$(BOOST_ROOT)/osx/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 10.2.app";
-				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.2";
+				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.2Uni";
 				OTHER_LDFLAGS = (
 					"-framework",
 					u_complib,
 					"-lboost_regex",
 				);
 				PRODUCT_NAME = jsoncpp;
-				SDKROOT = macosx10.14;
-				VALID_ARCHS = x86_64;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -673,9 +682,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				BOOST_ROOT = ../../../boost_1_59_0/osx/prefix;
+				BOOST_ROOT = ../../../boost_1_76_0/boost;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
+				CODE_SIGN_IDENTITY = "-";
+				DEVELOPMENT_TEAM = V9L7TJM735;
 				DSTROOT = /;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
@@ -692,20 +703,19 @@
 				INSTALL_PATH = "$(PROJECT_DIR)/../../lib/osx/studio102";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(BOOST_ROOT)/lib",
+					"$(BOOST_ROOT)/osx/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OMNIS_EXE = "/Volumes/Macintosh-HD/Applications/Omnis Studio 10.2.app";
-				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.2";
+				OMNIS_LIB_PATH = "../../../omnis/OSX-SDK-10.2Uni";
 				OTHER_LDFLAGS = (
 					"-framework",
 					u_complib,
 					"-lboost_regex",
 				);
 				PRODUCT_NAME = jsoncpp;
-				SDKROOT = macosx10.14;
+				SDKROOT = macosx;
 				SKIP_INSTALL = NO;
-				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -965,8 +975,7 @@
 					/Developer/Headers/FlatCarbon,
 					$PROJECT_DIR/English.lproj,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-				VALID_ARCHS = "i386 ppc";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				WRAPPER_EXTENSION = u_xcomp;
 			};
 			name = Debug;
@@ -974,10 +983,6 @@
 		96CF456008FBABD1003AA3FE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = "$(PROJECT_DIR)/../../deploy/Mac";
 				FRAMEWORK_SEARCH_PATHS = "$(OMNIS_LIB_PATH)/complib";
@@ -1011,8 +1016,7 @@
 					/Developer/Headers/FlatCarbon,
 					$PROJECT_DIR/English.lproj,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-				VALID_ARCHS = "i386 ppc";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 				WRAPPER_EXTENSION = u_xcomp;
 			};
 			name = Release;
